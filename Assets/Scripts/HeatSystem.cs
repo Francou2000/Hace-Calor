@@ -86,7 +86,7 @@ public class HeatSystem : MonoBehaviour
         }
 
         // Touch (tap)
-        var activeTouches = Touch.activeTouches;
+        var activeTouches = UnityEngine.InputSystem.EnhancedTouch.Touch.activeTouches;
         for (int i = 0; i < activeTouches.Count; i++)
         {
             if (activeTouches[i].phase == TouchPhase.Began)
