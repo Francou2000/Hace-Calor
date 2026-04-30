@@ -1,7 +1,13 @@
 using UnityEngine;
+#if ENABLE_INPUT_SYSTEM
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.EnhancedTouch;
+using TouchPhase = UnityEngine.InputSystem.TouchPhase;
+#endif
 
 /// <summary>
 /// Gestiona calor, escalado de dificultad e input (mouse + touch).
+/// Compatible con Input System y con Input Manager clásico.
 /// </summary>
 public class HeatSystem : MonoBehaviour
 {
@@ -14,6 +20,32 @@ public class HeatSystem : MonoBehaviour
     [SerializeField] private float dangerHeatThreshold = 25f;
 
     public float CurrentHeat { get; private set; }
+
+#if ENABLE_INPUT_SYSTEM
+    private bool enhancedTouchEnabled;
+#endif
+
+    private void OnEnable()
+    {
+#if ENABLE_INPUT_SYSTEM
+        if (!enhancedTouchEnabled)
+        {
+            EnhancedTouchSupport.Enable();
+            enhancedTouchEnabled = true;
+        }
+#endif
+    }
+
+    private void OnDisable()
+    {
+#if ENABLE_INPUT_SYSTEM
+        if (enhancedTouchEnabled)
+        {
+            EnhancedTouchSupport.Disable();
+            enhancedTouchEnabled = false;
+        }
+#endif
+    }
 
     public void ResetHeat()
     {
@@ -28,17 +60,14 @@ public class HeatSystem : MonoBehaviour
             return;
         }
 
-        // Escalado progresivo: cada segundo hace crecer más rápido el calor.
         float scaledIncrease = heatIncreaseRate * (1f + (difficultyScaling * survivalTime));
         CurrentHeat += scaledIncrease * deltaTime;
 
-        // Input: click izquierdo o tap.
         if (IsCoolingInputPressed())
         {
             CurrentHeat = Mathf.Max(0f, CurrentHeat - coolingPower);
         }
 
-        // Derretimiento cuando supera umbral.
         if (CurrentHeat > dangerHeatThreshold)
         {
             float excessHeatFactor = (CurrentHeat - dangerHeatThreshold) / dangerHeatThreshold;
@@ -49,6 +78,26 @@ public class HeatSystem : MonoBehaviour
 
     private bool IsCoolingInputPressed()
     {
+#if ENABLE_INPUT_SYSTEM
+        // Mouse (left click)
+        if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            return true;
+        }
+
+        // Touch (tap)
+        var activeTouches = Touch.activeTouches;
+        for (int i = 0; i < activeTouches.Count; i++)
+        {
+            if (activeTouches[i].phase == TouchPhase.Began)
+            {
+                return true;
+            }
+        }
+
+        return false;
+#else
+        // Fallback al sistema clásico.
         if (Input.GetMouseButtonDown(0))
         {
             return true;
@@ -57,9 +106,10 @@ public class HeatSystem : MonoBehaviour
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
-            return touch.phase == TouchPhase.Began;
+            return touch.phase == UnityEngine.TouchPhase.Began;
         }
 
         return false;
+#endif
     }
 }
