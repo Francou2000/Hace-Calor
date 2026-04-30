@@ -43,7 +43,8 @@ public class GameUI : MonoBehaviour
 
     public void ShowGameOver(float survivalTime)
     {
-        SetInGameVisible(true); // mantiene HUD + instrucción de contexto, opcional
+        // Al perder, ocultamos HUD de juego y mostramos panel final con links.
+        SetInGameVisible(false);
         SetGameOverVisible(true);
 
         if (finalTimeText != null)
@@ -105,5 +106,6 @@ public class GameUI : MonoBehaviour
         if (finalTimeText == null) Debug.LogWarning("[GameUI] Falta finalTimeText.");
         if (awarenessText == null) Debug.LogWarning("[GameUI] Falta awarenessText.");
         if (climateLinks == null) Debug.LogWarning("[GameUI] Falta climateLinks.");
+        if (linkTexts == null || linkTexts.Length == 0) Debug.LogWarning("[GameUI] Falta asignar linkTexts para mostrar los nombres de links en pantalla final.");
     }
 }
