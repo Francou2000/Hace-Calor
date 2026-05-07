@@ -795,6 +795,101 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 808945161}
   m_CullTransparentMesh: 1
+--- !u!1 &812750268
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 812750269}
+  - component: {fileID: 812750271}
+  - component: {fileID: 812750270}
+  - component: {fileID: 812750272}
+  m_Layer: 5
+  m_Name: Glaciar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &812750269
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812750268}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1773239116}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &812750270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812750268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -1880882630042881947, guid: b758d71fb9281fa4a83a068f93e35bec, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &812750271
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812750268}
+  m_CullTransparentMesh: 1
+--- !u!114 &812750272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812750268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d5f470d51b3ff7478461b331ce9f878, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GlacierController
+  initialMass: 100
+  spriteRenderer: {fileID: 812750270}
+  state1Healthy: {fileID: -1880882630042881947, guid: b758d71fb9281fa4a83a068f93e35bec, type: 3}
+  state2SlightlyMelted: {fileID: 4503048811583392134, guid: eb42bcd2dc1139f44be8bbf5418a089e, type: 3}
+  state3Melted: {fileID: 3724199296809529521, guid: 985cc5847eed75245961875a4d7bacdc, type: 3}
+  state4AlmostGone: {fileID: 6401567613206312252, guid: bea825a09455ae34a9f1ae7859e53ae2, type: 3}
+  state5FullyMelted: {fileID: 2745192303735416112, guid: ce72d9e1c22828e4bb9a05f3c466f9f1, type: 3}
 --- !u!1 &824636636
 GameObject:
   m_ObjectHideFlags: 0
@@ -949,7 +1044,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &837442864
 SpriteRenderer:
   serializedVersion: 2
@@ -2441,6 +2536,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 812750269}
   - {fileID: 972879131}
   - {fileID: 566452487}
   m_Father: {fileID: 0}
@@ -2635,7 +2731,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b2b308ffd1dcc247a0e758f75e89917, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  glacierController: {fileID: 837442865}
+  glacierController: {fileID: 812750272}
   heatSystem: {fileID: 1889552155}
   gameUI: {fileID: 1773239112}
 --- !u!4 &1889552157

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// Gestiona la masa del glaciar y su estado visual (5 sprites).
@@ -10,7 +11,7 @@ public class GlacierController : MonoBehaviour
     [SerializeField, Range(0f, 100f)] private float initialMass = 100f;
 
     [Header("Visual")]
-    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private Image spriteRenderer;
     [SerializeField] private Sprite state1Healthy;
     [SerializeField] private Sprite state2SlightlyMelted;
     [SerializeField] private Sprite state3Melted;
